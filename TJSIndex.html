@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The James Sandwich</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+
+  /* Custom fonts */
+  @font-face {
+      font-family: "airstrike";
+      src: url("resources/fonts/airstrikelaser.ttf");
+  }
+
+  /* CSS animations */
+  @keyframes title_screen_grow {
+    from {font-size: 0px;}
+    to {font-size: 60px;}
+  }
+
+  @keyframes playlist_fade {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+
+  body { 
+    background-color: black;
+    font-family: Lato;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Taken from https://markdotto.com/playground/3d-text/ */
+  #title_screen_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #title_screen_text h1{
+    text-shadow: 0 1px 0 #ccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaa,
+                0 6px 1px rgba(0,0,0,.1),
+                0 0 5px rgba(0,0,0,.1),
+                0 1px 3px rgba(0,0,0,.3),
+                0 3px 5px rgba(0,0,0,.2),
+                0 5px 10px rgba(0,0,0,.25),
+                0 10px 10px rgba(0,0,0,.2),
+                0 20px 20px rgba(0,0,0,.15);
+
+    font-family: "airstrike";
+    color: purple;
+    font-size: 60px;
+
+    flex: 0 0 auto;
+    
+    animation-name: title_screen_grow;
+    animation-duration: 2s;
+  }
+
+  #c {
+    /* width: 80%;
+    height: 80%;
+    display: block; */
+  }
+
+  .playlist_card {
+    flex: 0 0 auto;
+  }
+
+  #tjs {
+
+  }
+
+  font-family: 'Lato', sans-serif;
+
+</style>
+
+<body>
+
+  <div id="title_screen_text">
+  
+    <h1>The James Sandwich</h1>
+  
+  </div>
+
+  <canvas id="c"></canvas>
+
+  <button id="btn_flip">Activate animaion</button>
+
+  <iframe class="playlist_card" id="tjs" src="https://open.spotify.com/embed/playlist/0gXG06Z6UHAbXlXlhMvMef" width="522" height="602" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+</body>
+
+<script type="module">
+
+  // Find the latest version by visiting https://unpkg.com/three. The URL will
+  // redirect to the newest stable release.
+  import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+
+  import { GLTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js';
+  import { OrbitControls } from 'https://unpkg.com/three/examples/jsm/controls/OrbitControls.js';
+  import { GUI } from 'https://threejsfundamentals.org/threejs/../3rdparty/dat.gui.module.js';
+
+</script>
+
+<script>
+
+  window.onload = function(){
+
+    var random_wallpaper = Math.floor((Math.random() * 73) + 10);
+
+    //Sorry plaza.one, gonna hijack your backgrounds for just a moment! They're super cool!!
+    document.body.style.backgroundImage = "url('https://plaza.one/img/backs/" + random_wallpaper + ".gif')";
+
+    var btn_flip = document.getElementById("btn_flip");
+    btn_flip.onclick = function(event){
+      btn_flip.children[0].classList.add("playlist_fade");
+      setTimeout(function(){
+        btn_flip.children[0].classList.remove("playlist_fade");
+      }, 500);
+    }
+
+  };
+
+</script>
+
+
+
+</html>
